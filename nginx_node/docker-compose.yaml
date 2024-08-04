@@ -6,7 +6,8 @@ services:
     networks:
       - node-network
     volumes:
-      - ./app:/usr/src/app
+      - ./app:/app
+      - /app/node_modules
     tty: true
     ports:
       - "3000:3000"
