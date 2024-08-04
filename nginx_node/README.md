@@ -1,6 +1,7 @@
 # Instruções
 
-```shell
-docker compose up -d --build
 
+```shell
+cd nginx_node
+docker compose up -d --build
 ```
