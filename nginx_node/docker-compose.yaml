@@ -12,7 +12,9 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+
     
   db:
     image: mysql:5.7
@@ -28,6 +30,13 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     networks: 
       - node-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+
+
 
   nginx:
     build:
